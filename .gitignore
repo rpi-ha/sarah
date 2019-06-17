@@ -1,2 +1,7 @@
 *.log
+mail.cfg
+sarah.items
+sarah.rules
+sarah.sitemap
+sarah.things
 **/__pycache__
