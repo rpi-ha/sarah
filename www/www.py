@@ -872,32 +872,40 @@ def maint():
         for fld in req:
 #             print(fld, req[fld])
  
-            if fld != "saveForm":
+#             if fld != "saveForm":
+#                 qry += fld + " = \'" + req[fld] + "\', "
+
+            if fld == "bedtimeisnextday":
+                qry += "bedtimeisnextday = 1, "
+                
+            elif fld == "emailusestarttls":
+                qry += "emailusestarttls = 1, "
+                
+            elif fld == "emailusessl":
+                qry += "emailusessl = 1, "
+                
+            elif fld == "emailusepop":
+                qry += "emailusepop = 1, "
+                    
+            elif fld != "saveForm":
                 qry += fld + " = \'" + req[fld] + "\', "
 
-                if "bedtimeisnextday" not in req:
-                    qry += "bedtimeisnextday = \'0\', "
-                else:
-                    qry += "bedtimeisnextday = \'1\', "
-                    
-                if "emailusestarttls" not in req:
-                    qry += "emailusestarttls = \'0\', "
-                else:
-                    qry += "emailusestarttls = \'1\', "
-                    
-                if "emailusessl" not in req:
-                    qry += "emailusessl = \'0\', "
-                else:
-                    qry += "emailusessl = \'1\', "
-                    
-                if "emailusepop" not in req:
-                    qry += "emailusepop = \'0\', "
-                else:
-                    qry += "emailusepop = \'1\', "
+        if "bedtimeisnextday" not in req:
+            qry += "bedtimeisnextday = 0, "
+            
+        if "emailusestarttls" not in req:
+            qry += "emailusestarttls = 0, "
+            
+        if "emailusessl" not in req:
+            qry += "emailusessl = 0, "
+            
+        if "emailusepop" not in req:
+            qry += "emailusepop = 0, "
                     
             
         qry = qry[:-2]
         qry += " WHERE id = 1;"
+#         print(qry)
  
  
         try:
