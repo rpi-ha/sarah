@@ -1021,7 +1021,8 @@ def administrata():
             return b"COMMAND: Returned the following...\n" + ret
                 
         if cmd == "Update S.A.R.A.H.":
-            ret = sarah.executeCmdRet('git', '--git-dir=/usr/local/sarah/.git', 'log')
+#             ret = sarah.executeCmdRet('git', '--git-dir=/usr/local/sarah/.git', 'log')
+            ret = sarah.executeCmdRet('git', 'pull', 'origin', 'master')
             return b"COMMAND: Returned the following...\n" + ret
                 
         
