@@ -11,24 +11,24 @@ var int internetRadioVol            = 0
 
 // Alarm settings
 var String alarmCommand           = ""
-var int alarmEnabledTimeoutSecs   = 8   //60
+var int alarmEnabledTimeoutSecs   = 60
 //var boolean alarmEnabled          = false
 
 var Timer alarmTriggeredTimer     = null
 var boolean alarmTriggered        = false
-var int alarmTriggeredTimeoutMins = 1  //10
-var int sirenTimeoutSecs          = 30  // must be < ((alarmTriggeredTimeoutMins * 60) - alarmEnabledTimeoutSecs) !!
+var int alarmTriggeredTimeoutMins = 20
+var int sirenTimeoutSecs          = 1200  // must be < ((alarmTriggeredTimeoutMins * 60) - alarmEnabledTimeoutSecs) !!
 
 var Timer motionInsideTriggeredTimer     = null
 var boolean motionInsideTriggered        = false
-var int motionInsideTriggeredTimeoutMins = 1  //10
+var int motionInsideTriggeredTimeoutMins = 10
 
 var Timer tamperDisabledTimer      = null
 var Timer tamperTriggeredTimer     = null
 var boolean tamperTriggered        = false
 
-var int tamperDisabledTimeoutMins  = 1  //20
-var int tamperTriggeredTimeoutMins = 1  //10
+var int tamperDisabledTimeoutMins  = 20
+var int tamperTriggeredTimeoutMins = 10
 //var boolean tamperEnabled          = true
 
 // Vacation mode
