@@ -71,18 +71,21 @@ function resetPage() {
   <table align="center">
     <tr><td>
     <ul>
-	<tr><td><li>Restart the openHAB service.............</td><td><input class="tablebutton1" type="button" name="cmd" value="Restart openHAB" 
+	<tr><td><li>Restart the openHAB service..............</td><td><input class="tablebutton1" type="button" name="cmd" value="Restart openHAB" 
 	onClick="if(confirmTheForm('This will restart the openHAB service. It can take a couple of minutes to restart, but it will take a few more ' +
-	'minutes before it reinitializes the system. Proceed?')){runCmd('Restart openHAB');}"></li></tr>
+	'minutes before it reinitializes the system. Proceed?')){runCmd('Restart openHAB');}"></li></td></tr>
 	<tr><td><li>Reboot the Raspberry Pi....................</td><td><input class="tablebutton1" type="button" name="cmd" value="Reboot" 
 	onClick="if(confirmTheForm('This will reboot the Rapsberry Pi. It will take a few minutes and the system will be unavailable during that ' +
-	'time. Proceed?')){runCmd('Reboot');}"></li></tr>
+	'time. Proceed?')){runCmd('Reboot');}"></li></td></tr>
 	<tr><td><li>Shutdown the Raspberry Pi................</td><td><input class="tablebutton1" type="button" name="cmd" value="Shutdown" 
 	onClick="if(confirmTheForm('This will shutdown the Raspberry Pi. Please wait until the green light next to the red power light has stopped ' +
-	'flashing before you remove the power. Proceed?')){runCmd('Shutdown');}"></li></tr>
-	<tr><td><li>Update your Raspberry Pi’s software...</td><td><input class="tablebutton1" type="button" name="cmd" value="Update" 
+	'flashing before you remove the power. Proceed?')){runCmd('Shutdown');}"></li></td></tr>
+	<tr><td><li>Update your Raspberry Pi’s software...</td><td><input class="tablebutton1" type="button" name="cmd" value="Update Pi" 
 	onClick="if(confirmTheForm('This will update your Raspberry Pi\'s software. It can take a while if you have not done this recently. ' +
-	'Proceed?')){runCmd('Update');}"></li></tr>
+	'Proceed?')){runCmd('Update Pi');}"></li></td></tr>
+	<tr><td></td><td>&nbsp;</td></tr>
+	<tr><td><li>Update S.A.R.A.H. ...........................</td><td><input class="tablebutton1" type="button" name="cmd" value="Update S.A.R.A.H." 
+	onClick="if(confirmTheForm('This will update S.A.R.A.H. to the latest version. Please reboot your Pi after it has completed. Proceed?')){runCmd('Update S.A.R.A.H.');}"></li></td></tr>
     </ul>
     </tr></td>
   </table>
