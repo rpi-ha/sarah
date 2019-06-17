@@ -1,0 +1,17 @@
+<div align="center">
+<input class="navbutton" id="navbutton1" type="button" onclick="window.location.href = '/';" 
+value="Links">
+<input class="navbutton" id="navbutton2" type="button" onclick="window.location.href = 'homewiz';" 
+value="Home Wizard">
+<input class="navbutton" id="navbutton3" type="button" onclick="window.location.href = 'maint';" 
+value="Maintenance">
+<input class="navbutton" id="navbutton4" type="button" onclick="window.location.href = 'administrata';" 
+value="Administrata">
+</div>
+<script type="text/javascript">
+  document.getElementById('navbutton'+document.getElementById('pageis').value).style.pointerEvents = 'none';
+  document.getElementById('navbutton'+document.getElementById('pageis').value).style.color = 'black';
+  document.getElementById('navbutton'+document.getElementById('pageis').value).disabled = true;
+  document.getElementById('navbutton'+document.getElementById('pageis').value).style.opacity = 0.8;
+  document.getElementById('navbutton'+document.getElementById('pageis').value).style.boxShadow='0px 0px 0px #440022';
+</script>

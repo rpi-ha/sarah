@@ -1,0 +1,22 @@
+<table>
+ &nbsp;&nbsp;&nbsp;&nbsp;<form name="main" action="/" method="get"><input type="submit" value="CURRENT"/></form>
+<form name="main" action="/10day" method="get"><input type="submit" value="    10 DAY    "/></form>
+<form name="main" action="/hourly" method="get"><input type="submit" value="  HOURLY  "/></form>
+<form name="main" action="/dftw" method="get"><input type="submit" value="    DFTW    "/></form>
+<form name="main" action="/" method="post">
+&nbsp;<select name="loc">
+    <option value="" disabled="disabled" selected="selected">- location -</option>
+    <option value="Plainville, CT:CT/Plainville">Plainville</option>
+    <option value="Simsbury,CT:CT/Simsbury">Simsbury</option>
+    <option value="Bar Harbor, ME:ME/Bar_Harbor">Bar Harbor</option>
+    <option value="Soutwest Harbor, ME:ME/Southwest_Harbor">SW Harbor</option>
+    <option value="Burlington, VT:VT/Burlington">Burlington</option>
+    <option value="Montreal, QC:Canada/Montreal">Montreal</option>
+    <option value="Toronto, ON:zmw:00000.176.71508">Toronto</option>
+    <option value="London, UK:UK/London">London</option>
+</select>
+<input type="submit" name="go" value="go"/>
+</form>
+<form name="update" action="/" onsubmit="return confirm('yeah?');" method="post"><input type="submit" 
+  style="width: 70px;text-align: center;" name="updatenow" value="Doit!"/></form>
+</table>

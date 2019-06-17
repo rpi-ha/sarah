@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>S.A.R.A.H. Command Center - Administrata</title>
+{% include 'head.html' %}
+<script type="text/javascript">
+function runCmd(cmd) {
+  var xhttp = new XMLHttpRequest();
+  var msgbox = document.getElementById("msgbox");
+  
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      msgbox.innerHTML = this.responseText;
+    }
+  }
+  xhttp.open("POST", "administrata", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("cmd=" + cmd);
+
+  if (cmd == "Reboot") {
+    msgbox.innerHTML = "S.A.R.A.H. is rebooting. Please click the 'Reload page' button in 2-3 minutes after the reboot is complete.";
+  } else if (cmd == "Shutdown") {
+    msgbox.innerHTML = "S.A.R.A.H. is being shutdown. You may safely unplug the power when the green flashing light next to the red " +
+    "power light goes out.";
+  } else {
+    msgbox.innerHTML = "Command running, please wait...";
+  }
+}
+
+function reloadPage() {
+  window.location.reload(false); 
+}
+
+function resetPage() {
+    //document.getElementById('viewpw1').checked=false;
+    //document.getElementById('viewpw2').checked=false;
+    //document.getElementById('viewpw3').checked=false;
+}
+</script>
+
+</head>
+
+<body onload="resetPage();">
+{{motd}}
+<form name="theForm" action="/administrata" method="post">
+<input hidden type="text" name="pageis" id="pageis" value="4"/>
+<table class="table">
+<tr align="center">
+  <td  align="center" colspan="6" class="tableheader">
+{% include 'header.html' %}
+<!-- { include 'cookie.html' } -->
+  </td>
+</tr>
+<tr>
+  <td class="tableheader" colspan="6">
+{% include 'navselect.html' %}
+{% include 'nav.html' %}
+  </td>
+</tr>
+<tr>
+  <td id="descheader" class="tableheadercell" colspan="6">
+  <table align="center">
+  <tr align="left"><td>Use the following to administer S.A.R.A.H. (Only use when necessary or directed to do so)</td></tr>
+  </table>
+  </td>
+</tr>
+<tr>
+  <td class="tablefootercell" colspan="6" >
+  <button class="tablebutton1" type="button" onclick="reloadPage()">Reload page</button>
+
+  <table align="center">
+    <tr><td>
+    <ul>
+	<tr><td><li>Restart the openHAB service.............</td><td><input class="tablebutton1" type="button" name="cmd" value="Restart openHAB" 
+	onClick="if(confirmTheForm('This will restart the openHAB service. It can take a couple of minutes to restart, but it will take a few more ' +
+	'minutes before it reinitializes the system. Proceed?')){runCmd('Restart openHAB');}"></li></tr>
+	<tr><td><li>Reboot the Raspberry Pi....................</td><td><input class="tablebutton1" type="button" name="cmd" value="Reboot" 
+	onClick="if(confirmTheForm('This will reboot the Rapsberry Pi. It will take a few minutes and the system will be unavailable during that ' +
+	'time. Proceed?')){runCmd('Reboot');}"></li></tr>
+	<tr><td><li>Shutdown the Raspberry Pi................</td><td><input class="tablebutton1" type="button" name="cmd" value="Shutdown" 
+	onClick="if(confirmTheForm('This will shutdown the Raspberry Pi. Please wait until the green light next to the red power light has stopped ' +
+	'flashing before you remove the power. Proceed?')){runCmd('Shutdown');}"></li></tr>
+	<tr><td><li>Update your Raspberry Pi’s software...</td><td><input class="tablebutton1" type="button" name="cmd" value="Update" 
+	onClick="if(confirmTheForm('This will update your Raspberry Pi\'s software. It can take a while if you have not done this recently. ' +
+	'Proceed?')){runCmd('Update');}"></li></tr>
+    </ul>
+    </tr></td>
+  </table>
+  <br/>
+  <br/>
+<!--
+  <table align="center">
+    <tr><td colspan="2"><b>Change user and database passwords (These are the Raspberry pi user account 'openhab'<br/>
+    and the openHAB and S.A.R.A.H. database accounts. Please make it a strong password and<br/>
+    write it down somewhere safe.)</b></td></tr>
+	<tr><td align="right">Current password...........<br/>
+	view <input class="tablebutton" type="checkbox" id="viewpw1"
+	onClick="viewPW('currpw');"></td><td><input class="tablebutton" type="password" name="currpw" 
+	id="currpw" maxlength="48" value="{{ currpw }}" style="width: 350px;" onClick=""></tr>
+    </td></tr>
+	<tr><td align="right">Enter new password.......<br/>
+	view <input class="tablebutton" type="checkbox" id="viewpw2"
+	onClick="viewPW('newpw1');"></td><td><input class="tablebutton" type="password" name="newpw1" 
+	id="newpw1" maxlength="48" value="{{ newpw1 }}" style="width: 350px;" onClick="" onInput="checkPW(this);"> 7 - 48 chars. max. (no quotes)<br/>
+	
+    </td></tr>
+	<tr><td align="right">Re-type new password....<br/>
+	view <input class="tablebutton" type="checkbox" id="viewpw3"
+	onClick="viewPW('newpw2');"></td><td><input class="tablebutton" type="password" name="newpw2" 
+	id="newpw2" maxlength="48" value="{{ newpw2 }}" style="width: 350px;" onClick="" onInput="checkPW(this);"> 7 - 48 chars. max. (no quotes)
+    </td></tr>
+	<tr><td colspan="2" align="center"><input class="tablebutton" type="submit" name="savePW" 
+	id="savePW" value="save password" onClick="return confirmTheForm('Update all passwords. Are you absolutely sure? \n(You should only do this when you first setup S.A.R.A.H. \nand if you think the password has been compromised.)\n\nDo NOT leave this page!\nDO NOT TURN OFF THE POWER!!') && checkPWs();"><br/>
+    <tr><td align="right"><b>guide to strong passwords - </b></td><td><a href="https://www.webroot.com/us/en/resources/tips-articles/how-do-i-create-a-strong-password" 
+    target="_blank">https://www.webroot.com/.../how-do-i-create-a-strong-password</a></td></tr>
+    <tr><td>&nbsp;</td></tr>
+  </table> -->
+  </td>
+</tr>
+<tr>
+  <td class="tableheader" colspan="6">&nbsp;
+  </td>
+</tr>
+<tr>
+  <td style="text-align: center;" class="tablefootercell" colspan="6">
+    <textarea class="tablebutton" id="msgbox" rows="4" cols="107">{{resp}}</textarea>
+  </td>
+</tr>
+</table>
+</form>
+
+{% include 'devkan1.html' %}
+  </body>
+</html>

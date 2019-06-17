@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>S.A.R.A.H. Command Center - Maintenance</title>
+{% include 'head.html' %}
+</head>
+
+<body onload="">
+{{motd}}
+<input hidden type="text" name="pageis" id="pageis" value="3"/>
+<form name="theForm" action="/maint" method="post">
+<table class="table">
+<tr align="center">
+  <td  align="center" colspan="6" class="tableheader">
+{% include 'header.html' %}
+<!-- { include 'cookie.html' } -->
+  </td>
+</tr>
+<tr>
+  <td class="tableheader" colspan="6">
+{% include 'navselect.html' %}
+{% include 'nav.html' %}
+  </td>
+</tr>
+<tr>
+  <td id="descheader" class="tableheadercell" colspan="6">
+  <table align="center">
+  <tr align="center"><td>Use the following to maintain S.A.R.A.H. - (be sure to generate and install<br/>the config files, using the Home Wizard, after you make changes)</td></tr>
+  </table>
+  </td>
+</tr>
+<tr>
+  <td class="tablefootercell" colspan="6" >
+  <input class="tablebutton" type="submit" name="saveForm" value="save" onClick="return checkMaintForm();">
+  <input class="tablebutton" type="reset" name="resetForm" value="reset" onClick="">
+
+  <br/>
+  <table align="left">
+    <tr><td>&nbsp;</td></tr>
+    <tr><td><b>General settings</b></td></tr>
+	<tr><td>Morning time (e.g. 06:00 for 6:00am)</td><td><input class="tablebutton" type="text" name="morningtime" 
+	id="morningtime" maxlength="5" value="{{ morningtime }}" style="width: 50px;" onClick=""> in 24 hour time (add 12 after noon)
+    </td></tr>
+	<tr><td>Daytime (e.g. 10:00 for 10:00am)</td><td><input class="tablebutton" type="text" name="daytime" 
+	id="daytime" maxlength="5" value="{{ daytime }}" style="width: 50px;" onClick=""> in 24 hour time (add 12 after noon)
+    </td></tr>
+	<tr><td>Evening time (e.g. 17:00 for 5:00pm)</td><td><input class="tablebutton" type="text" name="eveningtime" 
+	id="eveningtime" maxlength="5" value="{{ eveningtime }}" style="width: 50px;" onClick=""> in 24 hour time (add 12 after noon)
+    </td></tr>
+	<tr><td>Night time (e.g. 23:00 for 11:00pm)</td><td><input class="tablebutton" type="text" name="nighttime" 
+	id="nighttime" maxlength="5" value="{{ nighttime }}" style="width: 50px;" onClick=""> in 24 hour time (add 12 after noon)
+    </td></tr>
+    <tr><td>&nbsp;</td></tr>
+	<tr><td>Home description (e.g. Seattle, WA)</td><td><input class="tablebutton" type="text" name="homedesc" 
+	id="homedesc" maxlength="128" value="{{ homedesc }}" style="width: 250px;" onClick="">
+    </td></tr>
+	<tr><td>Home location latitude (e.g. 47.608013)</td><td><input class="tablebutton" type="text" name="homelatitude" 
+	id="homelatitude" maxlength="15" value="{{ homelatitude }}" style="width: 150px;" onClick="">
+    </td></tr>
+	<tr><td>Home location longitude (e.g. -122.335167)</td><td><input class="tablebutton" type="text" name="homelongitude" 
+	id="homelongitude" maxlength="15" value="{{ homelongitude }}" style="width: 150px;" onClick="">
+    </td></tr>
+	<tr><td>Home location altitude (e.g. 45)</td><td><input class="tablebutton" type="text" name="homealtitude" 
+	id="homealtitude" maxlength="15" value="{{ homealtitude }}" style="width: 150px;" onClick=""> in Meters (ft / 3.2808)
+    </td></tr>
+	<tr><td>Home location refresh rate (e.g. 180 secs)</td><td><input class="tablebutton" type="text" name="homerefresh" 
+	id="homerefresh" maxlength="3" value="{{ homerefresh }}" style="width: 50px;" onClick="">
+    </td></tr>
+    <tr><td align="right"><b>find your coordinates - </b></td><td><a href="https://www.latlong.net/" target="_blank">https://www.latlong.net/</a></td></tr>
+    <tr><td>&nbsp;</td></tr>
+  </table>
+  <br/>
+
+  <table align="left">
+    <tr><td>&nbsp;</td></tr>
+    <tr><td><b>Email settings</b></td></tr>
+	<tr><td>Email to receive messages separate with ';'<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(e.g. &lt;your email&gt;@gmail.com) </td><td><input class="tablebutton" type="text" name="email" 
+	id="email" maxlength="1024" value="{{ email }}" style="width: 450px;" onClick=""></tr>
+    </td></tr>
+	<tr><td>Hostname - The email server hostname (e.g. smtp.gmail.com)</td><td><input class="tablebutton" type="text" name="emailhost" 
+	id="emailhost" maxlength="128" value="{{ emailhost }}" style="width: 200px;" onClick=""></tr>
+    </td></tr>
+	<tr><td>Email port - defaults to 25 (e.g. 587 for TLS/SSL, 465 for SSL)
+    </td><td><input class="tablebutton" type="text" name="emailport" 
+	id="emailport" maxlength="5" value="{{ emailport }}" style="width: 50px;" onClick="">
+    </td></tr>
+	<tr><td>Username - if the email server requires authentication</td><td><input class="tablebutton" type="text" name="emailuser" 
+	id="emailuser" maxlength="128" value="{{ emailuser }}" style="width: 200px;" onClick="">
+    </td></tr>
+	<tr><td>Password - if the email server requires authentication</td><td><input class="tablebutton" type="password" name="emailpasswd" 
+	id="emailpasswd" maxlength="128" value="{{ emailpasswd }}" style="width: 200px;" onClick="">
+    </td></tr>
+	<tr><td>Email address to use for sending mails from (e.g.<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;your email&gt;@gmail.com)</td><td><input class="tablebutton" type="text" 
+	name="emailfrom" id="emailfrom" maxlength="128" value="{{ emailfrom }}" style="width: 200px;" onClick="">
+    </td></tr>
+    <tr><td>Use STARTTLS - check this if enabled on mail server (defaults to<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;false)</td><td><input {% if emailusestarttls==1 %}checked{% endif %} 
+    class="tablebutton" type="checkbox" name="emailusestarttls" id="emailusestarttls" value="no" style="width: 50px;" onClick="">
+    </td></tr>
+	<tr><td>Use SSL negotiation - check this if enabled on mail server (defaults<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to false, do not use both starttls=true and ssl=true)
+	</td><td><input {% if emailusessl==1 %}checked{% endif %} class="tablebutton" type="checkbox" name="emailusessl" id="emailusessl" 
+	value="on" style="width: 50px;" onClick="">
+    </td></tr>
+	<tr><td>POP before SMTP - check this if you use POP instead of SMTP<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(defaults to false)
+    </td><td><input {% if emailusepop==1 %}checked{% endif %} class="tablebutton" type="checkbox" name="emailusepop" id="emailusepop" 
+    value="on" style="width: 50px;" onClick="">
+    </td></tr>
+	<tr><td>Character set used to encode message body (platform default is<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;used if blank)</td><td><input class="tablebutton" type="text" 
+	name="emailcharset" id="emailcharset" maxlength="128" value="{{ emailcharset }}" style="width: 200px;" onClick="">
+    </td></tr>
+    <tr><td align="right"><b>find some common email configurations - </b></td><td><a href="https://rpi-ha.com/the-alarm-system/#setting-up-email-alerts" target="_blank">
+    https://rpi-ha.com/the-alarm-system/#setting-up-email-alerts</a></td></tr>
+    <tr><td>&nbsp;</td></tr>
+  </table>
+  <br/>
+
+  <table align="left">
+    <tr><td>&nbsp;</td></tr>
+    <tr><td><b>Vacation mode settings</b></td></tr>
+	<tr><td>Minimum inside lights on</td><td><input class="tablebutton" type="text" name="minlightson" 
+	id="minlightson" maxlength="2" value="{{ minlightson }}" style="width: 25px;" onClick=""> must ALWAYS be >= 1 and < number of inside lights selected for vacation mode
+    </td></tr>
+	<tr><td>Wake time (e.g. 07:00 for 7:00am)</td><td><input class="tablebutton" type="text" name="waketime" 
+	id="waketime" maxlength="5" value="{{ waketime }}" style="width: 50px;" onClick=""> your average wake time, in 15 minute increments - in 24 hour time (add 12 after noon)
+    </td></tr>
+	<tr><td>Bed time (e.g. 23:00 for 11:00pm)</td><td><input class="tablebutton" type="text" name="bedtime" 
+	id="bedtime" maxlength="5" value="{{ bedtime }}" style="width: 50px;" onClick=""> your average bedtime, in 15 minute increments - in 24 hour time (add 12 after noon)
+    </td></tr>
+	<tr><td>Bedtime is next day</td><td><input {% if bedtimeisnextday==1 %}checked{% endif %} class="tablebutton" type="checkbox" name="bedtimeisnextday" 
+	id="bedtimeisnextday" value="on" style="width: 50px;" onClick=""> check this if you go to bed the day after you wake up (usually for swing shift work)
+    </td></tr>
+    <tr><td>&nbsp;</td></tr>
+  </table>
+  <br/>
+
+  <table align="left">
+    <tr><td>&nbsp;</td></tr>
+    <tr><td><b>Internet Radio channels</b></td></tr>
+    <tr><td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;description</td><td>&nbsp;url of stream</td></tr>
+    {% for x in radiochnls %}
+	<tr><td align="right">Channel {{ loop.index }} <input class="tablebutton" type="text" name="radiodesc{{ loop.index }}" 
+	id="radiodesc{{ loop.index }}" maxlength="45" value="{{ radiodescs[loop.index-1] }}" style="width: 200px;" onClick=""></td><td><input class="tablebutton" type="text" name="radiochannel{{ loop.index }}" 
+	id="radiochannel{{ loop.index }}" maxlength="256" value="{{ x }}" style="width: 500px;" onClick="">
+    </td></tr>
+    {% endfor %}
+    <tr><td align="right"><b>find stations - </b></td><td><a href="https://www.internet-radio.com/" target="_blank">https://www.internet-radio.com/</a></td></tr>
+
+    <tr><td>&nbsp;</td></tr>
+  </table>
+  <br/>
+  </td>
+</tr>
+<td class="tableheader" colspan="6">
+  <input class="tablebutton" type="submit" name="saveForm" value="save" onClick="return checkMaintForm();">
+  <input class="tablebutton" type="reset" name="resetForm" value="reset" onClick="">
+</td>
+<tr>
+  <td style="text-align: center;" class="tablefootercell" colspan="6">
+    <textarea class="tablebutton" id="msgbox" rows="4" cols="107">{{resp}}</textarea>
+  </td>
+</tr>
+</table>
+</form>
+
+{% include 'devkan1.html' %}
+  </body>
+</html>

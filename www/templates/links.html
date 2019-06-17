@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>S.A.R.A.H. Command Center - Links</title>
+{% include 'head.html' %}
+<script type="text/javascript">
+</script>
+
+</head>
+
+<body onload="">
+{{motd}}
+<form name="theForm" action="/administrata" method="post">
+<input hidden type="text" name="pageis" id="pageis" value="1"/>
+<table class="table">
+<tr align="center">
+  <td  align="center" colspan="6" class="tableheader">
+{% include 'header.html' %}
+<!-- { include 'cookie.html' } -->
+  </td>
+</tr>
+<tr>
+  <td class="tableheader" colspan="6">
+{% include 'navselect.html' %}
+{% include 'nav.html' %}
+  </td>
+</tr>
+<tr>
+  <td id="descheader" class="tableheadercell" colspan="6">
+  <table align="center">
+  <tr align="left"><td>Use the following to access the openHAB web interfaces</td></tr>
+  </table>
+  </td>
+</tr>
+<tr>
+  <td class="tablefootercell" colspan="6" >
+  <table align="center">
+    <tr><td>
+    <ul>
+	<tr><td><li><a class="link" target="thepages" href="http://sarah.local:8080/basicui/app">openHAB Basic UI
+	</a> - Access and control your home here.</li></td></tr>
+	<tr><td><li><a class="link" target="thepages" href="http://sarah.local:8080/habpanel/index.html#/view/Alarm%20system">The Alarm system
+	</a> - The S.A.R.A.H. Alarm dashboard.</li></td></tr>
+	<tr><td><li><a class="link" target="thepages" href="http://sarah.local:8080/habpanel/index.html#/view/Status">The system Status page
+	</a> - The S.A.R.A.H. Status dashboard.</li></td></tr>
+	<tr><td><li><a class="link" target="thepages" href="http://sarah.local:8080/habpanel/index.html#/view/Weather">The Weather page
+	</a> - The S.A.R.A.H. Weather dashboard.</li></td></tr>
+	<tr><td><li><a class="link" target="thepages" href="http://sarah.local:8080/habpanel/index.html#/">openHAB Habpanel
+	</a> - The S.A.R.A.H. dashboards index incl. the Alarm, Status and Weather pages.</li></td></tr>
+	<tr><td>&nbsp;</td></tr>
+	<tr><td><li><a class="link" target="thepages" href="http://sarah.local:8080/start/index">openHAB index page
+	</a> - The main openHAB page with links to all other pages.</li></td></tr>
+	<tr><td><li><a class="link" target="thepages" href="http://sarah.local:8080/paperui/index.html#/inbox/search">openHAB Paper UI
+	</a> - Add your Things and manage them directly here.</li></td></tr>
+	<tr><td><li><a class="link" target="thepages" href="http://sarah.local:9001/">openHAB Logfile viewer
+	</a> - View the openHAB logs here.</li></td></tr>
+	<tr><td>&nbsp;</td></tr>
+	<tr><td><li><a class="link" target="thepages" href="http://rpi-ha.com/">Raspberry Pi-Home Automation site
+	</a> - Get all the instructions here.</li></td></tr>
+    </ul>
+    </td></tr>
+  </table>
+  <br/>
+  <br/>
+
+  </td>
+</tr>
+<tr>
+  <td class="tableheader" colspan="6">&nbsp;
+  </td>
+</tr>
+<tr>
+  <td style="text-align: center;" class="tablefootercell" colspan="6">
+    <textarea class="tablebutton" id="msgbox" rows="4" cols="107">{{resp}}</textarea>
+  </td>
+</tr>
+</table>
+</form>
+
+{% include 'devkan1.html' %}
+  </body>
+</html>

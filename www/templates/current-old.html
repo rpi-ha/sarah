@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>S.A.R.A.H. Command Center</title>
+	<style>
+		.hidden { display: none; }
+		.unhidden { display: block; }
+		.tab1 { margin-left: 40px; }
+		.tab2 { margin-left: 80px; }
+		.tab3 { margin-left: 120px; }
+		.tab4 { margin-left: 160px; }
+		.tab5 { margin-left: 240px; }
+		nobr { white-space: nowrap }
+		div { margin: 10px 10px 10px 10px; }
+
+		body {
+		  background-color: lightblue;
+		  font-family: verdana;
+		}
+
+		h1 {
+		  color: white;
+		  text-align: center;
+		}
+
+		p {
+		  font-family: verdana;
+		  font-size: 20px;
+		}
+	</style>
+
+	<script>
+		Array.matrix2 = function(numrows, numcols, numdepth, initial) {
+			var arr = [];
+			for (var i = 0; i <= numrows; ++i) {
+				var columns = [];
+				for (var j = 0; j <= numcols; ++j) {
+					columns[j] = initial;
+				}
+				arr[i] = columns;
+			}
+			return arr;
+		}
+
+		Array.matrix3 = function(numrows, numcols, numdepth, initial) {
+			var arr = [];
+			for (var i = 0; i <= numrows; ++i) {
+				var columns = [];
+				for (var j = 0; j <= numcols; ++j) {
+					var depth = [];
+					for (var k = 0; k <= numdepth; ++k) {
+						depth[k] = initial;
+					}
+					columns[j] = depth;
+				}
+				arr[i] = columns;
+			}
+			return arr;
+		}
+
+		var maxFloors = 8;
+		var maxRooms = 8;
+		var maxItems = 15;
+
+		var aFloors = [0,0,0,0,0,0,0,0];
+		var aRooms = Array.matrix2(maxFloors,maxRooms,0,0);
+		var aItems = Array.matrix3(maxFloors,maxRooms,maxItems,0);
+		//alert(aFloors);
+		
+		var currentFloor = 0;
+		var currentRoom = 0;
+		var currentItem = 0;
+		var currentRow = 0;
+		
+		var Homes = {{Homes|safe}};
+		var Floors = {{Floors|safe}};
+		var Rooms = {{Rooms|safe}};
+		var Items = {{Items|safe}};
+		//alert(Floors[0][1] + " - " + Floors.length);
+
+		//aFloors[7] = 0;
+		//aRooms[7][9] = 0;
+		//aItems[7][9][14] = 0;
+		//numeric[1][0] == 'input3';
+		//numeric[1][1] == 'input4';
+
+	    //alert(aFloors[8]==1);
+		//alert(aRooms[8][8]==1);
+		//alert(aItems[8][8][15]==1);
+
+
+/*			var count = document.getElementById("t1").value; 
+			//alert(count);
+
+			for(i=1; i<=4; i++) {
+				var id = "floor"+i.toString()
+				//alert(id);
+
+				var x = document.getElementById(id);
+				//if (x.style.display === "none") {
+					x.style.display = "none";
+				//} else {
+				//	x.style.display = "none";
+				//}
+			}
+			for(i=1; i<=count; i++) {
+				var id = "floor"+i.toString()
+				//alert(id);
+
+				var x = document.getElementById(id);
+				//if (x.style.display === "none") {
+					x.style.display = "block";
+				//} else {
+				//	x.style.display = "none";
+				//}
+			}
+		} */
+	
+		function unhideFloor() {
+		    //alert(f[1][1]);
+		    currentFloor++;
+		    currentRoom = 0;
+		    currentItem = 0;
+			var id = "floor"+currentFloor.toString()
+			//alert(id);
+			var item = document.getElementById(id);
+			item.className='unhidden';
+		}
+
+		function unhideRoom() {
+		    currentRoom++;
+		    currentItem = 0;
+			var id = "room"+currentRoom.toString()+"floor"+currentFloor.toString()
+			//alert(id);
+			var item = document.getElementById(id);
+			item.className='unhidden';
+		}
+
+		function unhideItem() {
+		    currentItem++;
+			var id = "item"+currentItem.toString()+"room"+currentRoom.toString()+"floor"+currentFloor.toString();
+			//alert(id);
+			var item = document.getElementById(id);
+			item.className='unhidden';
+		}
+
+        function remRow() {
+            // Number of inputs to create
+            //var number = document.getElementById("member").value;
+            // Container <div> where dynamic content will be placed
+            var container = document.getElementById("container");
+            // Clear previous contents of the container
+            //while (container.hasChildNodes()) {
+            /*if(container.hasChildNodes()) {
+                for(var x = 0; x < 5; x++) {
+                    container.removeChild(container.lastChild);
+                }
+            }*/
+            //alert(container.lastChild.id);
+            var x = container.lastChild.id.indexOf("-");
+            //alert(container.lastChild.id.substring(0,x));
+
+			if(container.lastChild.id.substring(0,x) == "floor") {
+				currentFloor--
+			} else if(container.lastChild.id.substring(0,x) == "room") {
+				currentRoom--
+			} else if(container.lastChild.id.substring(0,x) == "item") {
+				currentItem--
+			}
+
+            container.removeChild(container.lastChild);
+            
+            
+            var s = container.lastChild.id;
+            var t = s.split("-")[1].split(".");
+            
+		    currentFloor = t[0];
+		    currentRoom  = t[1];
+		    currentItem  = t[2];
+
+            //alert(s + " - " + currentFloor + " - " + currentRoom + " - " + currentItem);
+            /*id = "row" + currentRow.toString();
+            //alert("id: " + id);
+            //document.getElementById(id).remove;
+            var row = document.getElementById(id);
+            alert("row " + id + " - " + row.lastChild);
+            while (row.hasChildNodes()) {
+                row.removeChild(row.lastChild);
+            }
+            document.getElementById("rowPtr").value=currentRow;*/
+            //currentRow--
+        }
+
+        function addNewFloor() {
+            currentFloor++;
+            currentRoom = 0;
+            currentItem = 0;
+            
+            var container = document.getElementById("container");
+
+			var div = document.createElement("div");
+			div.id = "floor-" + currentFloor.toString() + ".0.0";
+			div.name = "floor"; // + currentRow.toString();
+			container.appendChild(div);
+			
+    		var span = document.createElement("span");
+    		//span.classList.add("tab1");
+			div.appendChild(span);
+
+			div.appendChild(document.createTextNode("Floor " + (currentFloor) + " "));
+// 			var input = document.createElement("input");
+// 			input.type = "text";
+// 			//input.value = "4";
+// 			input.name = "floorDesc" + currentFloor.toString();
+// 			div.appendChild(input);
+
+			var sel = document.createElement("select");
+			sel.name = "floor-" + currentFloor.toString() + ".0.0";
+			div.appendChild(sel);
+			var opt = document.createElement("option");
+			opt.innerHTML = "--- select ---";
+			opt.value = "";
+			sel.appendChild(opt);
+			for(var i = 0; i < Floors.length; i++) {
+				opt = document.createElement("option");
+				opt.innerHTML = Floors[i][1];
+				opt.value = Floors[i][0];
+				sel.appendChild(opt);
+			}
+
+			var input1 = document.createElement("input");
+			input1.type = "button";
+			input1.name = "addRoom" + currentFloor.toString();
+			input1.onclick = function() { addNewRoom(); };
+			input1.value = "add room";
+			div.appendChild(input1);
+
+			//div.appendChild(document.createElement("span"));
+			div.appendChild(document.createElement("br"));
+			//container.appendChild(document.createElement("div"));
+        }
+
+        function addNewRoom() {
+            //currentRow++
+            currentRoom++;
+            currentItem = 0;
+
+            var container = document.getElementById("container");
+
+			var div = document.createElement("div");
+			div.id = "room-" + currentFloor.toString() + "." + currentRoom.toString() + ".0";
+			div.name = "room"; // + currentRow.toString();
+			container.appendChild(div);
+			
+    		var span = document.createElement("span");
+    		span.classList.add("tab1");
+			div.appendChild(span);
+
+			div.appendChild(document.createTextNode("Room " + (currentRoom) + " "));
+// 			var input = document.createElement("input");
+// 			input.type = "text";
+// 			input.name = "roomDesc" + currentRoom.toString();
+// 			div.appendChild(input);
+
+			var sel = document.createElement("select");
+			sel.name = "room-" + currentFloor.toString() + "." + currentRoom.toString() + ".0";
+			div.appendChild(sel);
+			var opt = document.createElement("option");
+			opt.innerHTML = "--- select ---";
+			opt.value = "";
+			sel.appendChild(opt);
+			for(var i = 0; i < Rooms.length; i++) {
+				opt = document.createElement("option");
+				opt.innerHTML = Rooms[i][1];
+				opt.value = Rooms[i][0];
+				sel.appendChild(opt);
+			}
+
+			var input1 = document.createElement("input");
+			input1.type = "button";
+			input1.name = "addItem" + currentRoom.toString();
+			input1.onclick = function() { addNewItem(); };
+			input1.value = "add item";
+			div.appendChild(input1);
+
+			//iv.appendChild(document.createElement("span"));
+			div.appendChild(document.createElement("br"));
+			//container.appendChild(document.createElement("div"));
+        }
+
+        function addNewItem() {
+            currentItem++
+            var container = document.getElementById("container");
+
+			var div = document.createElement("div");
+			div.id = "item-" + currentFloor.toString() + "." + currentRoom.toString() + "." + currentItem.toString();
+			div.name = "item"; // + currentRow.toString();
+			container.appendChild(div);
+			
+    		var span = document.createElement("span");
+    		span.classList.add("tab2");
+			div.appendChild(span);
+
+			div.appendChild(document.createTextNode("Item " + (currentItem) + " "));
+// 			var input = document.createElement("input");
+// 			input.type = "text";
+// 			input.name = "itemDesc" + currentItem.toString();
+// 			div.appendChild(input);
+
+			var sel = document.createElement("select");
+			sel.name = "item-" + currentFloor.toString() + "." + currentRoom.toString() + "." + currentItem.toString();
+			div.appendChild(sel);
+			var opt = document.createElement("option");
+			opt.innerHTML = "--- select ---";
+			opt.value = "";
+			sel.appendChild(opt);
+			for(var i = 0; i < Items.length; i++) {
+				opt = document.createElement("option");
+				opt.innerHTML = Items[i][1];
+				opt.value = Items[i][0];
+				sel.appendChild(opt);
+			}
+
+			var input = document.createElement("input");
+			input.type = "text";
+			input.value = "{channel=\"\"}";
+			input.name = "channel-" + currentFloor.toString() + "." + currentRoom.toString() + "." + currentItem.toString() + ".1";
+			div.appendChild(input);
+
+			var input = document.createElement("input");
+			input.type = "text";
+			input.value = "{channel=\"\"}";
+			input.name = "channel-" + currentFloor.toString() + "." + currentRoom.toString() + "." + currentItem.toString() + ".2";
+			div.appendChild(input);
+
+			var input = document.createElement("input");
+			input.type = "text";
+			input.value = "{channel=\"\"}";
+			input.name = "channel-" + currentFloor.toString() + "." + currentRoom.toString() + "." + currentItem.toString() + ".3";
+			div.appendChild(input);
+
+			var input = document.createElement("input");
+			input.type = "text";
+			input.value = "{channel=\"\"}";
+			input.name = "channel-" + currentFloor.toString() + "." + currentRoom.toString() + "." + currentItem.toString() + ".4";
+			div.appendChild(input);
+
+			div.appendChild(document.createElement("br"));
+
+			var input = document.createElement("input");
+			input.type = "text";
+			input.value = "{channel=\"\"}";
+    		input.classList.add("tab5");
+			input.name = "channel-" + currentFloor.toString() + "." + currentRoom.toString() + "." + currentItem.toString() + ".5";
+			div.appendChild(input);
+
+			var input = document.createElement("input");
+			input.type = "text";
+			input.value = "{channel=\"\"}";
+			input.name = "channel-" + currentFloor.toString() + "." + currentRoom.toString() + "." + currentItem.toString() + ".6";
+			div.appendChild(input);
+
+			var input = document.createElement("input");
+			input.type = "text";
+			input.value = "{channel=\"\"}";
+			input.name = "channel-" + currentFloor.toString() + "." + currentRoom.toString() + "." + currentItem.toString() + ".7";
+			div.appendChild(input);
+
+			var input = document.createElement("input");
+			input.type = "text";
+			input.value = "{channel=\"\"}";
+			input.name = "channel-" + currentFloor.toString() + "." + currentRoom.toString() + "." + currentItem.toString() + ".8";
+			div.appendChild(input);
+
+			//div.appendChild(document.createElement("span"));
+			div.appendChild(document.createElement("br"));
+			//container.appendChild(document.createElement("div"));
+        }
+        
+        function insertNewRow() {
+// 			 <div id="div1">
+// 			  <p id="p1">This is a paragraph.</p>
+// 			  <p id="p2">This is another paragraph.</p>
+// 			</div>
+// 
+// 			var para = document.createElement("p");
+// 			var node = document.createTextNode("This is new.");
+// 			para.appendChild(node);
+// 
+// 			var element = document.getElementById("div1");
+// 			var child = document.getElementById("p1");
+// 			element.insertBefore(para, child);
+        }
+
+		function saveTheForm() {
+            //document.getElementById("dataFloors").value = Floors
+            //document.getElementById("dataRooms").value = Rooms
+            //document.getElementById("dataItems").value = Items
+            
+            //alert("now: " + Floors);
+            //alert("now: " + document.getElementById("dataFloors").value);
+            
+            document.theForm.submit();
+        }
+
+
+/*		function unhide(c) {
+			var count = document.getElementById("t1").value; 
+			//alert(count);
+			//var item = document.getElementById(divID);
+			for(i=1; i<=count; i++) {
+				var id = "div"+i.toString()
+				//alert(id);
+				var item = document.getElementById(id);
+				item.className='unhidden';
+				//item.className=(item.className=='hidden')?'unhidden':'unhidden';
+			}
+			//var item = document.getElementById(divID);
+			//if (item) {
+			//    item.className=(item.className=='hidden')?'unhidden':'hidden';
+			//}
+			document.getElementById("t1").value = ""; 
+		}
+
+		function disable() {
+			// This will disable just the div
+			document.getElementById("dcalc").disabled = true;
+
+			// This will disable all the children of the div
+			var nodes = document.getElementById("dcalc").getElementsByTagName('*');
+			for(var i = 0; i < nodes.length; i++){
+				 nodes[i].disabled = true;
+			}
+		} */
+
+
+		function startup() {
+            var container = document.getElementById("header");
+			var input = document.createElement("input");
+			input.type = "text";
+			input.name = "testHomes" + currentRoom.toString();
+			container.appendChild(input);
+
+			var sel = document.createElement("select");
+			sel.name = "homes";
+			container.appendChild(sel);
+			var opt = document.createElement("option");
+			opt.innerHTML = "--- select ---";
+			opt.value = "";
+			sel.appendChild(opt);
+			for(var i = 0; i < Homes.length; i++) {
+				opt = document.createElement("option");
+				opt.innerHTML = Homes[i][1];
+				opt.value = Homes[i][0];
+				sel.appendChild(opt);
+			}
+		}			
+
+	</script>
+</head>
+<body onLoad="startup()">
+<table style="width:100%; text-align:center; background-color: darkblue;" cellpadding="20px" cellspacing="0px" margin="0px">
+<tbody>
+<tr>
+<td style="color: white; font-size:16pt;">S.A.R.A.H. Command Center <span style="font-size:10pt;">v1.0</span></td>
+</tr>
+</tbody>
+</table>
+{#% include '' %}
+
+{% if alerts != 'None' %}
+{% autoescape false %}
+<br><b>ALERTS: </b>{{ alerts }}<br>
+{% endautoescape %}
+{% endif %}
+
+{% import 'macros.html' as macros %}
+{{ macros.select(1, Floors) }}
+{{ macros.select(2, Floors) }}
+{{ macros.select(3, Rooms) }}
+{{ macros.select(4, Items) }#}
+
+
+<br/><br/>
+<form name="theForm" action="./" method="post">
+
+<input type="hidden" name="dataFloors" id="dataFloors" value="">
+<input type="hidden" name="dataRooms" id="dataRooms" value="">
+<input type="hidden" name="dataItems" id="dataItems" value="">
+
+<div id="header">
+</div>
+
+<input type="button" name="addFloor" value="add floor" onClick="addNewFloor();">
+<input type="button" name="removeRow" value="remove last entry" onClick="remRow();">
+<input type="submit" name="saveForm" value="save" onClick="saveTheForm();">
+
+<div id="container">
+</div>
+
+<input type="button" name="addFloor" value="add floor" onClick="addNewFloor();">
+<input type="button" name="removeRow" value="remove last entry" onClick="remRow();">
+<input type="submit" name="saveForm" value="save" onClick="saveTheForm();">
+
+</form>
+<!-- {% for floor in range(1,2) %}
+<div id="floor{{loop.index}}" class="unhidden">
+	<p>floor {{ floor }} <input type="text" name="fname" value="{{ 'name' }}" disabled> 
+	<select id="selFloor{{loop.index}}">
+	{#% for flr in Floors|safe %#}
+	<option value=""></option>
+    {#% endfor %#}
+    </select>
+    <input type="button" name="addRoom" value="add room"  class="" onClick="unhideRoom()">
+    </p>
+
+{% for room in range(1,2) %}
+<div id="room{{loop.index}}floor{{floor}}" class="unhidden tab1"> 
+	<p class="tab1">room {{ room }} <input type="text" name="fname" value="{{ 'name' }}" disabled>
+	<select>
+	{% for rm in Rooms %}
+	<option value="{{ rm['name'] }}">{{ rm['name'] }}</option>
+    {% endfor %}
+    </select>
+    <input type="button" name="addItem" value="add item" class="" onClick="unhideItem()">
+    </p>
+
+{% for item in range(1,1) %}
+<div id="item{{loop.index}}room{{room}}floor{{floor}}" class="unhidden tab2"> 
+	<p class="tab2">item {{ item }} <input type="text" name="fname" value="{{ 'name' }}" disabled>
+	<select>
+	{% for itm in Items %}
+	<option value="{{ itm['name'] }}">{{ itm['name'] }}</option>
+    {% endfor %}
+    </select></p>
+</div>
+{% endfor %}
+
+</div>
+{% endfor %}
+
+</div>
+{% endfor %} -->
+
+<!-- {% for x in cursor %}
+	{{ x }}<br>
+{% endfor %} -->
+
+    <!-- script type='text/javascript'>
+        function addFields(){
+            // Number of inputs to create
+            var number = document.getElementById("member").value;
+            // Container <div> where dynamic content will be placed
+            var container = document.getElementById("container");
+            // Clear previous contents of the container
+            while (container.hasChildNodes()) {
+                container.removeChild(container.lastChild);
+            }
+            for (i=0;i<number;i++){
+                // Append a node with a random text
+                container.appendChild(document.createTextNode("Member " + (i+1)));
+                // Create an <input> element, set its type and name attributes
+                var input = document.createElement("input");
+                input.type = "text";
+                input.name = "member" + i;
+                container.appendChild(input);
+                // Append a line break 
+                container.appendChild(document.createElement("br"));
+            }
+        }
+    </script -->
+
+    <!-- input type="text" id="member" name="member" value="">Number of members: (max. 10)<br />
+    <a href="#" id="filldetails" onclick="addFields()">Fill Details</a>
+    <div id="container"/ -->
+
+
+  <!-- script>
+	for(var x = 1; x <= maxFloors; x++) {
+		var id = "selFloor"+x.toString();
+		var sel = document.getElementById(id);
+		for(var i = 0; i < Floors.length; i++) {
+			var opt = document.createElement("option");
+			opt.innerHTML = Floors[i][1];
+			opt.value = Floors[i][1];
+			sel.appendChild(opt);
+		}
+	}
+  </script -->
+</body>
+</html>
