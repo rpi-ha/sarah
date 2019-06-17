@@ -1123,8 +1123,7 @@ if __name__ == '__main__':
     logger.info("[[ ### Script execution - begin ### ]]")
     logger.info("[Web services starting]")
     
-    host = prod_serv
-    app.run(host=host, port=prod_port, debug=True, threaded=True)
+    app.run(host=prod_serv, port=prod_port, debug=True, threaded=True)
 
 #     http_server = WSGIServer((host, 8181), app)
 #     http_server.serve_forever()
