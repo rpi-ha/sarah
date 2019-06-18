@@ -795,7 +795,10 @@ def getThings():
     else:
         success = True
         #x=response.content
-        r = response.json()  #.decode("ascii")
+        if len(response.content) > 0:
+            r = response.json()  #.decode("ascii")
+        else:
+            r = {'label': 'System still booting... please wait.', 'channels': ''}
 #         print ( 'r: ', r, response)
 
     for x in r:
