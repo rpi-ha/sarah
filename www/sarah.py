@@ -783,43 +783,43 @@ def getThings():
         url = r"http://"+servername+"/rest/things"
         
         response = requests.get(url,verify=False) #, files=files)
+        s = response.status_code
 #         print ('status code: ', response.status_code)
 #         print ('status hdrs: ', response.headers)
-        #print ( 'now: ', response)
+#         print ( 'now: ', response)
     except:
         e = sys.exc_info()[0]
         print ( "Error: %s" % e )
 
-        success = False
-        return success, 'API call failed. Please check your network connection.'
-    else:
-        success = True
-        #x=response.content
-        if len(response.content) > 0:
+        return False, 'API call failed. Please check your network connection.'
+    else:        
+#         s = 503
+        print ( 'r: ', s)
+        if s == 200:
             r = response.json()  #.decode("ascii")
         else:
-            r = {'label': 'System still booting... please wait.', 'channels': ''}
+            r = [{"label": "Z-Wave Node: Missing - System still booting... please refresh in a few minutes.", "channels": [{"id":"System still booting... please wait.","uid":""}]}]
 #         print ( 'r: ', r, response)
+#         print ( 'r: ', len(response.content), len(response.text))
+
 
     for x in r:
-#         print(x['label'])
         label = x['label']
         if label[:11] == "Z-Wave Node":
             things.append(label)
         
             for channel in x['channels']:
-#                 print(channel['id'])
-#                 print(channel['uid'])
+#                 print(label, channel['id'], channel['uid'])
                 channels.append(tuple([label, channel['id'], channel['uid']]))
 
     things = sorted(things)
     channels = sorted(channels)
 
-#     for x in things:
-#         print(x)
-# 
-#     for x in channels:
-#         print(x)
+    for x in things:
+        print(x)
+
+    for x in channels:
+        print(x)
 
     return things, channels
 
