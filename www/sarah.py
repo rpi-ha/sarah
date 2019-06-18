@@ -793,8 +793,7 @@ def getThings():
 
         return False, 'API call failed. Please check your network connection.'
     else:        
-#         s = 503
-        print ( 'r: ', s)
+#         print ( 'r: ', s)
         if s == 200:
             r = response.json()  #.decode("ascii")
         else:
