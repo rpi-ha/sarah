@@ -9,4 +9,3 @@ then
 else
     echo "$ok - already exists."
 fi
-
