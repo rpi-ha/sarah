@@ -1,7 +1,7 @@
 # sarah
 The openHAB companion app... get a full, working openHAB instance on a raspberry pi in minutes. Some of the features you get out of the box:
-    ∙ USB audio preconfigured
     ∙ Speech preconfigured
+    ∙ USB audio preconfigured and ready for speakers
     ∙ A fully functioning alarm system patterned after ADT
     ∙ A tamper alarm to manage tamper alerts
     ∙ Vacation mode to intelligently turn lights on and off when you're away
