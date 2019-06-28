@@ -5,6 +5,19 @@
 {% include 'head.html' %}
 <script type="text/javascript">
 
+window.addEventListener("beforeunload", function (e) {
+/*  console.log(aFloors);
+    sleep(1000);*/
+
+    if (aFloors != 0) {
+        // Cancel the event
+        e.preventDefault();
+        // Chrome requires returnValue to be set
+        e.returnValue = '';
+    }
+});
+
+
 var home = {{home|safe}};
 var Homes = {{Homes|safe}};
 var Floors = {{Floors|safe}};

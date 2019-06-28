@@ -41,6 +41,11 @@ var currentItem = 1;
 
 var totChannels = 12;
 
+function sleep(delay) {
+  var start = new Date().getTime();
+  while (new Date().getTime() < start + delay);
+}
+
 function unhideFloor() {
 	//alert(f[1][1]);
 	currentFloor++;
@@ -1052,7 +1057,7 @@ function checkTheForm(mode) {
             return true;
         }
     } else if( mode == "load" ) {
-        if( aFloors != 0 ) {
+        /* if( aFloors != 0 ) {
             if( confirm( "You have been editing your home. Click 'Cancel', then click 'save' to save your work. Or, Click 'OK' to continue loading and lose your current work." ) ) {
                 if( document.getElementById('homes').value == "" ) {
                     alert( "Please select a saved home to load." );
@@ -1063,14 +1068,14 @@ function checkTheForm(mode) {
             } else {
                 return false;
             }
-        } else {
+        } else { */
             if( document.getElementById('homes').value == "" ) {
                 alert( "Please select a saved home to load." );
                 return false;
             } else {
                 return true;
             }
-        }
+        //}
     } else if( mode == "delete" ) {
         if( document.getElementById('homes').value == "" ) {
             alert( "Please select a saved home to delete." );
