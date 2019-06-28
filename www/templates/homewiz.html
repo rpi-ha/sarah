@@ -6,10 +6,10 @@
 <script type="text/javascript">
 
 window.addEventListener("beforeunload", function (e) {
-/*  console.log(aFloors);
-    sleep(1000);*/
+    //console.log(aFloors);
+    //sleep(1000);
 
-    if (aFloors != 0) {
+    if (gIsLoaded) {
         // Cancel the event
         e.preventDefault();
         // Chrome requires returnValue to be set
@@ -41,7 +41,8 @@ function startupPage() {
 	var input1 = document.createElement("input");
 	input1.type = "submit";
 	input1.name = "saveForm";
-	input1.onclick = function() { return checkTheForm('save'); };
+	input.id = "saveForm";
+	input1.onclick = function() { gIsLoaded = false;return checkTheForm('save'); };
 	input1.value = "save";
 	input1.classList.add("tablebutton");
 	container.appendChild(input1);
@@ -99,7 +100,7 @@ function startupPage() {
  </head>
 
 <body onload="startupPage();">
-<form name="theForm" action="/homewiz" method="post">
+<form name="theForm" action="/homewiz" method="post" >
 <input hidden type="text" name="pageis" id="pageis" value="2"/>
 <table class="table">
 <tr align="center">
@@ -147,7 +148,7 @@ function startupPage() {
 </tr>
 <tr>
 <td class="tableheader" colspan="6">
-  <input class="tablebutton" type="submit" name="saveForm" value="save" onClick="return checkTheForm('save');">
+  <input class="tablebutton" type="submit" name="saveForm" value="save" onClick="gIsLoaded = false;return checkTheForm('save');">
   <input class="tablebutton" type="submit" name="deleteForm" value="delete" onClick="return checkTheForm('delete');">
   <input class="tablebutton" type="submit" name="resetForm" value="reset" onClick="return checkTheForm('reset');">
   

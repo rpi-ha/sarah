@@ -26,6 +26,8 @@ Array.matrix3 = function(numrows, numcols, numdepth, initial) {
 	return arr;
 }
 
+var gIsLoaded = false;
+
 var maxFloors = 15;
 var maxRooms = 15;
 var maxItems = 20;
@@ -222,6 +224,7 @@ function remRow(div, id) {
 
 function addNewFloor() {
 	if( currentFloor >= maxFloors ) { return; }
+	gIsLoaded = true;
    	currentFloor = aFloors + 1;
    	aFloors = currentFloor;
 	currentRoom = 0;
@@ -950,6 +953,7 @@ function checkTheForm(mode) {
         var tName = document.getElementById('newHomeName').value;        
         document.getElementById('newHomeName').value = tName.replace(/([^\w\s-]+)/gi, "");
 
+        gIsLoaded = false;
         var floorIsNull = false;
         var floorIsEmpty = false;
         var floorIsFound = false;
@@ -1081,10 +1085,20 @@ function checkTheForm(mode) {
             alert( "Please select a saved home to delete." );
             return false;
         } else {
-            return confirm( "Delete this home permanently from the database?" );
+            if( confirm( "Delete this home permanently from the database?" ) ) {
+                gIsLoaded = false;
+                return true;
+            } else {
+                return false;
+            }
         }
     } else if( mode == "reset" ) {
-        return confirm( "This will delete everything in the current home and reset the page. It will not delete any homes you have saved. Are you sure?" );
+        if( confirm( "This will delete everything in the current home and reset the page. It will not delete any homes you have saved. Are you sure?" ) ) {
+            gIsLoaded = false;
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
