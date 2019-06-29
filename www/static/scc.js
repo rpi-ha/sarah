@@ -950,8 +950,13 @@ function confirmTheForm(msg) {
 function checkTheForm(mode) {
     if( mode == "save" ) {
         // remove all chars from name except [0-9,A-Z,a-z,-_]
-        var tName = document.getElementById('newHomeName').value;        
-        document.getElementById('newHomeName').value = tName.replace(/([^\w\s-]+)/gi, "");
+        if( document.getElementById('newHomeName') ) {
+            oName = document.getElementById('newHomeName');
+            oNameValue = oName.value;   
+            oNameValue = oNameValue.replace(/([^\w\s-]+)/gi, "");
+        } else {
+            oNameValue = "";   
+        }
 
         gIsLoaded = false;
         var floorIsNull = false;
@@ -1054,7 +1059,7 @@ function checkTheForm(mode) {
             return false;
         }
     
-        if( document.getElementById('newHomeName').value == "" && document.getElementById('homes').value == "" ) {
+        if( oNameValue == "" && document.getElementById('homes').value == "" ) {
             alert( "Please enter a new name for your home and click save." );
             return false;
         } else {
