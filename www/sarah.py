@@ -814,11 +814,11 @@ def getThings():
     things = sorted(things)
     channels = sorted(channels)
 
-    for x in things:
-        print(x)
-
-    for x in channels:
-        print(x)
+#     for x in things:
+#         print(x)
+# 
+#     for x in channels:
+#         print(x)
 
     return things, channels
 
