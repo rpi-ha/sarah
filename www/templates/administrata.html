@@ -82,7 +82,8 @@ function resetPage() {
 	'flashing before you remove the power. Proceed?')){runCmd('Shutdown');}"></li></td></tr>
 	<tr><td><li>Update your Raspberry Pi’s software...........<br/>( N.B. This will upgrade openHAB as well )</td><td><input class="tablebutton1" type="button" name="cmd" value="Update Pi" 
 	onClick="if(confirmTheForm('This will update your Raspberry Pi\'s software. It can take a while if you have not done this recently. ' +
-	'Proceed?')){runCmd('Update Pi');}"></li></td></tr>
+	'Be aware that this will also upgrade openHAB, which may not yet be tested with S.A.R.A.H. You will know it is safe to update when the latest ' +
+	'version of S.A.R.A.H. includes the new version of openHAB ( check here - rpi-ha.com/downloads ). Proceed?')){runCmd('Update Pi');}"></li></td></tr>
 	<tr><td></td><td>&nbsp;</td></tr>
 	<tr><td><li>Update S.A.R.A.H. ...................................</td><td><input class="tablebutton1" type="button" name="cmd" value="Update S.A.R.A.H." 
 	onClick="if(confirmTheForm('This will update S.A.R.A.H. to the latest version. Proceed?')){runCmd('Update S.A.R.A.H.');}"></li></td></tr>
