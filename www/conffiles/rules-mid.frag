@@ -109,7 +109,7 @@ val checkOk = [ String d, String i, String p |
     var String k = "XmgqN2hIcmdTI3JnJDQ1ajhUNSVkQTI2cXhsMC0pdz0="
 
     var results = executeCommandLine("python3@@/etc/checkread.py@@" + k + "@@" + d + "@@" + i + "@@" + p,5000)
-    logInfo("Keypad", "now: " + d + " - " + i + " - " + results)
+    //logInfo("Keypad", "now: " + d + " - " + i + " - " + results)
  
     results
 ]
