@@ -957,7 +957,7 @@ function checkTheForm(mode) {
         } else {
             oNameValue = "";   
         }
-        alert('now: ' + document.getElementById('newHomeName') + ' - ' + oNameValue);
+        //alert('now: ' + document.getElementById('newHomeName') + ' - ' + oNameValue);
 
         var floorIsNull = false;
         var floorIsEmpty = false;
