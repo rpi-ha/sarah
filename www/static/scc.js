@@ -957,8 +957,8 @@ function checkTheForm(mode) {
         } else {
             oNameValue = "";   
         }
+        alert('now: ' + document.getElementById('newHomeName') + ' - ' + oNameValue);
 
-        gIsLoaded = false;
         var floorIsNull = false;
         var floorIsEmpty = false;
         var floorIsFound = false;
@@ -1052,7 +1052,8 @@ function checkTheForm(mode) {
         
 //         alert( isNull + " - " + isEmpty + " - " + isFound + " - " + aFloors );
         if( floorIsEmpty || roomIsEmpty || itemIsEmpty || (items < rooms) || (rooms < floors)) {
-            alert( "Please select all Floors, Rooms and Items, then click save again." );
+            alert( "Please select all Floors, Rooms and Items, then click save again. Select '--Dummy--' " +
+            "for each item type that you don't have installed yet." );
             return false;
         } else if( !floorIsFound || !roomIsFound || !itemIsFound) {
             alert( "Please add a Floor, Room and Item to your home first." );
@@ -1063,6 +1064,7 @@ function checkTheForm(mode) {
             alert( "Please enter a new name for your home and click save." );
             return false;
         } else {
+            gIsLoaded = false;
             return true;
         }
     } else if( mode == "load" ) {

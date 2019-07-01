@@ -42,8 +42,8 @@ function startupPage() {
 	var input1 = document.createElement("input");
 	input1.type = "submit";
 	input1.name = "saveForm";
-	input.id = "saveForm";
-	input1.onclick = function() { gIsLoaded = false;return checkTheForm('save'); };
+	input1.id = "saveForm";
+	input1.onclick = function() { return checkTheForm('save'); };
 	input1.value = "save";
 	input1.classList.add("tablebutton");
 	container.appendChild(input1);
@@ -56,7 +56,7 @@ function startupPage() {
 	sel.classList.add("tablebutton");
 	container.appendChild(sel);
 	var opt = document.createElement("option");
-	opt.innerHTML = "--- select ---";
+	opt.innerHTML = "-- select home --";
 	opt.value = "";
 	sel.appendChild(opt);
 	for(var i = 0; i < Homes.length; i++) {
@@ -149,7 +149,7 @@ function startupPage() {
 </tr>
 <tr>
 <td class="tableheader" colspan="6">
-  <input class="tablebutton" type="submit" name="saveForm" value="save" onClick="gIsLoaded = false;return checkTheForm('save');">
+  <input class="tablebutton" type="submit" name="saveForm" value="save" onClick="return checkTheForm('save');">
   <input class="tablebutton" type="submit" name="deleteForm" value="delete" onClick="return checkTheForm('delete');">
   <input class="tablebutton" type="submit" name="resetForm" value="reset" onClick="return checkTheForm('reset');">
   
