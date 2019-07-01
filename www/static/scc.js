@@ -467,7 +467,7 @@ function addNewItem(floor, room, mode) {
 	sel.oninput = function() { lookupBinaryMode(this.value, this.id); };
 	div.appendChild(sel);
 	var opt = document.createElement("option");
-	opt.innerHTML = "---------- select type ----------";
+	opt.innerHTML = "-------- select item type --------";
 	opt.value = "";
 	sel.appendChild(opt);
 	for(var i = 0; i < Items.length; i++) {
@@ -495,7 +495,7 @@ function addNewItem(floor, room, mode) {
 	sel.oninput = function() { updateChannels(this.value, this.id); };
 	div.appendChild(sel);
 	var opt = document.createElement("option");
-	opt.innerHTML = "--------------------------------- select thing ---------------------------------";
+	opt.innerHTML = "--------------------------- select thing for this item---------------------------";
 	opt.value = "not-selected";
 	sel.appendChild(opt);
 	for(var i = 0; i < Things.length; i++) {
