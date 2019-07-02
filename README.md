@@ -22,4 +22,4 @@ The openHAB companion app... get a full, working openHAB instance on a raspberry
 In short, S.A.R.A.H. gives you the ability to setup and run openHAB without having to configure it or write all the code up front. It gives you that starting place in minutes, so you can extend and customize your home as your needs grow. It is the perfect starting place for the new openHAB user, saving you months of work so you can focus on the really cool stuff.
 <br/><br/>
 <nobr>To use S.A.R.A.H. you must first download the full image here - https://rpi-ha.com/download/.</nobr><br/>
-<nobr>Then visit - https://rpi-ha.com/getting-started/ for instructions.</nobr>
+<nobr>Then, please visit - https://rpi-ha.com/getting-started/ for instructions.</nobr>
