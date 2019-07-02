@@ -15,7 +15,7 @@ The openHAB companion app... get a full, working openHAB instance on a raspberry
  	<li>manage all of S.A.R.A.H.'s settings</li>
  	<li>manage the Raspberry Pi (send commands directly from the SCC)</li>
  	<li>create a home template that will generate all the openHAB config files (things, items, rules, sitemap, etc.)</li>
- 	<li>get SCC updates wih the push of a button</li>
+ 	<li>get S.A.R.A.H. updates wih the push of a button</li>
 </ul>
 </li>
 </ul>
