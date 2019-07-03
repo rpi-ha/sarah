@@ -28,7 +28,7 @@ import subprocess
 import sarah
 
 
-ver = "v1.6.3"
+# ver = "v1.6.3"
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 rootdir = os.getcwd()
 # print ( "rootdir: ", rootdir)
@@ -60,12 +60,19 @@ def converttofloat(s):
 app.jinja_env.filters['convertfloat'] = converttofloat
 
 
+def loadver():
+    with open(os.path.join(rootdir, "../", "version"), 'r', encoding='utf-8') as fin:
+        ver = fin.readline()
+
+    return ver
+
 
 @app.route('/', methods=['POST','GET'])
 def links():    
     resp = ""
     cmd = ""
     ret = 0
+    ver = loadver()
 
     req = request.form
 #     pprint ( req)
@@ -79,6 +86,7 @@ def links():
 def homewiz():
 #     t = ''
     resp = ""
+    ver = loadver()
 
 
     req = request.form
@@ -858,6 +866,7 @@ def maint():
     msg = ""
     fld = ""
     qry = ""
+    ver = loadver()
     radiochnls = []
     radiodescs = []
 
@@ -995,6 +1004,7 @@ def administrata():
     resp = ""
     cmd = ""
     ret = 0
+    ver = loadver()
 
     req = request.form
 #     pprint ( req)

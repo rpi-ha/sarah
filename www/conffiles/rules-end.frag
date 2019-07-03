@@ -19,24 +19,26 @@ then
 	) */
 	
     GarageDoors.members.forEach(door| 
-		if(door.state == ON || door.state == OPEN) { 
-			if(door.name.contains('1')) { 
+		if(door.state == ON || door.state == OPEN) {  // || door.state == OFF || door.state == CLOSED) { 
+            //logInfo("Garagedoor", door.name.toString + " - " + door.state.toString)
+            
+			if(door.name.contains('GarageDoor1')) { 
 			    GarageDoor1Switch.sendCommand(ON) 
 			    doorsOpen = true
-			} else if(door.name.contains('2')) { 
+			} else if(door.name.contains('GarageDoor2')) { 
 			    GarageDoor2Switch.sendCommand(ON) 
 			    doorsOpen = true
-			} else if(door.name.contains('3')) { 
+			} else if(door.name.contains('GarageDoor3')) { 
 			    GarageDoor3Switch.sendCommand(ON) 
 			    doorsOpen = true
-			} else if(door.name.contains('4')) { 
+			} else if(door.name.contains('GarageDoor4')) { 
 			    GarageDoor4Switch.sendCommand(ON) 
 			    doorsOpen = true
-			} else if(door.name.contains('5')) { 
-			    GarageDoor4Switch.sendCommand(ON) 
+			} else if(door.name.contains('GarageDoor5')) { 
+			    GarageDoor5Switch.sendCommand(ON) 
 			    doorsOpen = true
-			} else if(door.name.contains('6')) { 
-			    GarageDoor4Switch.sendCommand(ON) 
+			} else if(door.name.contains('GarageDoor6')) { 
+			    GarageDoor6Switch.sendCommand(ON) 
 			    doorsOpen = true
 			}
 		}
