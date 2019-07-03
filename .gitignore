@@ -3,3 +3,4 @@ ok
 **/conffiles/sarah.*
 **/conffiles/*.cfg
 **/__pycache__
+**/_out
