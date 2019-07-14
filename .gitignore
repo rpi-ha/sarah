@@ -1,7 +1,7 @@
 ok
 version
 /version
-*.log
+*.log*
 **/conffiles/sarah.*
 **/conffiles/*.cfg
 **/__pycache__
