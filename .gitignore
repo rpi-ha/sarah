@@ -1,5 +1,5 @@
 ok
-version
+/version
 *.log
 **/conffiles/sarah.*
 **/conffiles/*.cfg
