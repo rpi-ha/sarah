@@ -1,6 +1,6 @@
 ok
-!*/version
-/version
+version
+!/version
 *.log
 **/conffiles/sarah.*
 **/conffiles/*.cfg
