@@ -2,7 +2,7 @@
 // N.B. spelling phonetically sometimes sounds better!
 //      commas (,) are pauses
 var String waterHeaterAlarmMsg      = "Pardon me, but the water heater is leaking. You should fix it right away."
-var String newMailMsg               = "Uh hum, pardon me, but, youv got male!"
+var String newMailMsg               = "Uh hum, pardon me, but, youv got mail!"
 var String attemptingCloseAllGarageDoorsMsg = "Attempting, to close all garage doors for you now."
 var String noGarageDoorsOpenMsg     = "No garage doors were open."
 var int internetRadio               = 0
@@ -850,7 +850,7 @@ when
     Item [mailbox-alarm] received update OPEN
 then
 	MailboxSwitch.sendCommand(ON)
-	if(SilentSwitch.state != ON && AnnounceDrivewaySwitch.state == ON) {
+	if(SilentSwitch.state != ON) {  // && AnnounceDrivewaySwitch.state == ON) {
 		sayText.apply(newMailMsg)
 	}
 

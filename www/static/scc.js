@@ -101,6 +101,8 @@ function lookupBinaryMode(b, name) {
 function updateChannels(thing, name) {
     var name = "channel-" + name.split('-')[1];
     var burglarAlarm = "";
+    var smokeAlarm = "";
+    var smokeTamper = "";
     //alert(thing + " - " + name)
 
 	for (var i = 1; i <= 12; i++ ) {
@@ -114,6 +116,14 @@ function updateChannels(thing, name) {
 			//alert(thing + " - " + id + " - " + desc);
 			if (id.indexOf('burglar') != -1) {
 			    burglarAlarm = desc;
+			}
+			
+			if (thing.toLowerCase().indexOf('zcombo smoke and carbon monoxide alarm') != -1 && id.indexOf('alarm_general') != -1) {
+			    smokeAlarm = desc;
+			}
+
+			if (thing.toLowerCase().indexOf('zcombo smoke and carbon monoxide alarm') != -1 && id.indexOf('alarm_tamper') != -1) {
+			    smokeTamper = desc;
 			}
 
 			if (id.indexOf('binary') != -1) {
@@ -156,6 +166,12 @@ function updateChannels(thing, name) {
 
     if (document.forms["theForm"][name+'.3'].value == "" && burglarAlarm != "") {
         document.forms["theForm"][name+'.3'].value = burglarAlarm;
+    }
+
+    if (smokeAlarm != "") {
+        document.forms["theForm"][name+'.1'].value = smokeAlarm;
+        document.forms["theForm"][name+'.2'].value = smokeTamper;
+        document.forms["theForm"][name+'.3'].value = "";
     }
 }
 

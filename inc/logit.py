@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jan 8, 17:21:53 2019
@@ -5,8 +6,9 @@ Created on Wed Jan 8, 17:21:53 2019
 @author: seeLive
 """
 
+
 import logging, os, shutil
-#from logging.handlers import RotatingFileHandler
+from logging.handlers import RotatingFileHandler
 #from logging.handlers import WatchedFileHandler
 
 file   = ''
@@ -29,14 +31,15 @@ level  = 20
 def init(loglevel):
     global log_hndlr
 
-    log_hndlr = logging.FileHandler(file)
+    log_hndlr = RotatingFileHandler(file, mode='a', maxBytes=size, backupCount=bkps, encoding='utf-8', delay=False)
+#     log_hndlr = logging.FileHandler(file)
     formatter = logging.Formatter('[%(asctime)s] p%(process)s %(levelname)s - %(message)s','%m-%d-%y %H:%M:%S')
     log_hndlr.setFormatter(formatter)
     logger.addHandler(log_hndlr)
 
 #    logging.basicConfig(format='[%(asctime)s] p%(process)s %(levelname)s - %(message)s',filename=file,filemode='a',datefmt='%m/%d/%Y %I:%M:%S %p')
 
-#    #log_hndl = RotatingFileHandler(file, mode='a', maxBytes=size, backupCount=bkps, encoding='utf-8', delay=False)
+#    log_hndlr = RotatingFileHandler(file, mode='a', maxBytes=size, backupCount=bkps, encoding='utf-8', delay=False)
 #    log_hndlr = RotatingFileHandler(file, maxBytes=size, backupCount=bkps)
 #    log_hndlr = logging.handlers.WatchedFileHandler(file)
 #    formatter = logging.Formatter('[%(asctime)s] p%(process)s %(levelname)s - %(message)s','%m-%d-%y %H:%M:%S')
@@ -118,6 +121,7 @@ def write(loglevel, msg):
 
     #print ( size, os.path.getsize(file))
 
-    if os.path.getsize(file) >= size:
-        rotate()
+#   for windows to overcome file lock bug
+#     if os.path.getsize(file) >= size:
+#         rotate()
 
