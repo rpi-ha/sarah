@@ -1033,15 +1033,15 @@ def administrata():
             msg = "Shutdown Raspberry Pi"
             ret = sarah.executeCmdNoWait('sudo', 'shutdown', '-h', 'now')
         
-        if cmd == "Update Pi":
-            ret = sarah.executeCmdRet('sudo', 'apt-get', '-y', 'update')
-            ret += sarah.executeCmdRet('sudo', 'apt-get', '-y', 'upgrade')
-            return b"COMMAND: Returned the following...\n" + ret
+#        if cmd == "Update Pi":
+#            ret = sarah.executeCmdRet('sudo', 'apt-get', '-y', 'update')
+#            ret += sarah.executeCmdRet('sudo', 'apt-get', '-y', 'upgrade')
+#            return b"COMMAND: Returned the following...\n" + ret
                 
-        if cmd == "Update S.A.R.A.H.":
-#             ret = sarah.executeCmdRet('git', '--git-dir=/usr/local/sarah/.git', 'log')
-            ret = sarah.executeCmdRet('git', 'pull', 'origin', 'master')
-            return b"COMMAND: Returned the following...\n" + ret
+#        if cmd == "Update S.A.R.A.H.":
+##             ret = sarah.executeCmdRet('git', '--git-dir=/usr/local/sarah/.git', 'log')
+#            ret = sarah.executeCmdRet('git', 'pull', 'origin', 'master')
+#            return b"COMMAND: Returned the following...\n" + ret
                 
         
         if ret == 0:
