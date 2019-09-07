@@ -1,8 +1,11 @@
-ok
 version
 *.log*
-/bkps
+/bkps/**
+/extras/**
+/inc/**
+/startup/**
+/updates/**/_out/*
+/www/**
 **/conffiles/sarah.*
 **/conffiles/*.cfg
-**/__pycache__
-**/_out
+**/__pycache__/**

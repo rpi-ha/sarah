@@ -1,3 +1,5 @@
 #!/bin/bash
 
-# add lines to run updates
+# run updates
+cd /usr/local/sarah/updates
+python3 update.py
