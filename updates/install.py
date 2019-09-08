@@ -38,50 +38,9 @@ logit.level = loggerlevel
 # print()
 
 
-#### notify user?!?!?!?!?!?!?
-# cron dl's files
-# web server notifies user
-# use manual update to install
-
-# get version - sarah.loadver()
-# get list of all updates
-# loop through them
-#     if update > ver
-#         check if already done successfully
-#         backup db
-#         run db update
-#         if success
-#             copy files
-#         if failed
-#             tell user to restore from backup
-#         create .my.cnf
-#         set perms to 600
-#         update version to new ver
-#         stop web server - notify user web server will be unavailable during process, warn if fails to resstart pi (can't work if websever is down)
-#             pidof python3 - will it kill working session??? sould just restart service after copying???
-#         start web server  
-#             "python3 /usr/local/sarah/www/www.py &"
-#
-#         display release notes
-
-
-
-
-# add getver() to sarah.py (both pre and 1.6.5) - not all routines will call it yet???? where is it being called from?
-#     copy sarah.py 1.6.5 back to sarah.local????
-# get version
-# check if updates are greater than currver
-# add replacing line in .bash_profile to 1.6.5 update
-
-
-# create _out, bkps  dirs - mkdir -p bkps/db/fred
-# backup all files to be overwritten
-# add switching to new branch last
-
 
 logit.write( "info", "")
 logit.write( "info", ">>>>>>>>>>>>>>>>>>>>>>>> Install S.A.R.A.H. updates - begin <<<<<<<<<<<<<<<<<<<<<<<<")
-
 
 
 # check for updates
