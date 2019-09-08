@@ -78,7 +78,7 @@ if success:
     success = False
     try:
 #         currver = sarah.loadver()   -  use this for 1.6.6 and >
-        with open("/usr/local/sarah/version", 'r', encoding='utf-8') as fin:
+        with open("/usr/local/sarah/www/version", 'r', encoding='utf-8') as fin:
             currver = fin.readline()
     #     raise Exception("Sorry, no numbers below zero")
         logit.write( "info", "------ found version: %s" % currver)
