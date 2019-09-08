@@ -44,7 +44,6 @@ success = False
 try:
     os.chdir("../")
 
-    #cmd = ['git', 'pull', 'origin', 'prod']
     cmd = 'git pull origin prod'
     p1 = subprocess.Popen(cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE, shell=True, close_fds=True)
     stdout,stderr = p1.communicate()
