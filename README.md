@@ -8,6 +8,7 @@ The openHAB companion app... get a fully configured, working openHAB instance on
  	<li>Vacation mode to intelligently turn lights on and off when you're away</li>
  	<li>Dashboards to help you manage the system</li>
  	<li>Weather and Astromincal data preconfigured</li>
+  <li>Maria DB fully configured for persisting weather and current state data</li>
  	<li>Streaming internet radio with channel presets</li>
  	<li>The S.A.R.A.H. Command Center (SCC) web app to help you:
 <ul>
