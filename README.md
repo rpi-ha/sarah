@@ -1,4 +1,4 @@
-# S.A.R.A.H. for openHAB
+# S.A.R.A.H. for openHAB... It's just the beginning.
 The openHAB companion app... get a fully configured, working openHAB instance on a raspberry pi in minutes. Some of the features you get out of the box:
 <ul>
  	<li>Speech preconfigured</li>
